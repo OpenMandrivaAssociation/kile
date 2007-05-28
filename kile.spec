@@ -1,6 +1,6 @@
 %define	name	kile
 %define	version	1.9.3
-%define	release	%mkrel 1
+%define	release	%mkrel 2
 %define	Summary	Integrated LaTeX Environment for KDE3
 %define qtdir	%{_prefix}/lib/qt3/%{_lib}
 
@@ -16,9 +16,20 @@ Url:		http://kile.sourceforge.net/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	tetex-latex
 BuildRequires:	kdelibs-devel
+BuildRequires:  desktop-file-utils
 Patch1:			kile-1.8-fix-blacklisted-gcc.patch
 Patch2:		kile-1.8.1-i18n-de.patch
-Obsoletes:	kile-i18n-de, kile-i18n-es, kile-i18n-fr, kile-i18n-it, kile-i18n-nl, kile-i18n-pt, kile-i18n-en_GB, kile-i18n-da, kile-i18n-pt_BR,kile-i18n-sv, kile-i18n-ta
+Obsoletes:      kile-i18n-de
+Obsoletes:      kile-i18n-es 
+Obsoletes:      kile-i18n-fr 
+Obsoletes:      kile-i18n-it 
+Obsoletes:      kile-i18n-nl 
+Obsoletes:      kile-i18n-pt
+Obsoletes:      kile-i18n-en_GB
+Obsoletes:      kile-i18n-da
+Obsoletes:      kile-i18n-pt_BR
+Obsoletes:      kile-i18n-sv
+Obsoletes:      kile-i18n-ta
 Provides:	kile-i18n-de >= 1.8.0
 Provides:	kile-i18n-es >= 1.8.0
 Provides:	kile-i18n-fr >= 1.8.0
@@ -35,64 +46,21 @@ Provides:	kile-i18n-ta >= 1.8.0
 %description
 Integrated LaTeX Environment for KDE3
 
-%prep
-%setup -q
-%patch1 -p1 -b .fix_unblacklist_gcc
-
-%build
-make -f admin/Makefile.common
-QTDIR=%{qtdir}
-export QTDIR
-%configure2_5x	--disable-rpath \
-		--disable-debug \
-		--enable-final
-%make
-
-
-%install
-rm -rf $RPM_BUILD_ROOT
-%{makeinstall_std}
-
-# menu
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-
-install -d %buildroot/%_menudir/
-kdedesktop2mdkmenu.pl %name Office/Publishing %buildroot/%_datadir/applications/kde/kile.desktop %buildroot/%_menudir/kile kde
-
-rm -rf $RPM_BUILD_ROOT/%_datadir/apps/katepart/syntax/latex.xml
-rm -rf $RPM_BUILD_ROOT/%_datadir/apps/katepart/syntax/bibtex.xml
-
-rm -rf $RPM_BUILD_ROOT/%_datadir/INSTALL
-rm -rf $RPM_BUILD_ROOT/%_datadir/README
-rm -rf $RPM_BUILD_ROOT/%_datadir/AUTHORS
-rm -rf $RPM_BUILD_ROOT/%_datadir/NEWS
-rm -rf $RPM_BUILD_ROOT/%_datadir/TODO
-rm -rf $RPM_BUILD_ROOT/%_datadir/COPYING
-
-%find_lang %name
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %post
 %{update_menus}
-%if %mdkversion > 200600
 %update_icon_cache hicolor
 %{update_desktop_database}
-%endif
 
 %postun
 %{clean_menus}
-%if %mdkversion > 200600
 %clean_icon_cache hicolor
 %{clean_desktop_database}
-%endif
 
 %files -f %name.lang
 %defattr(-,root,root,0755)
 %doc INSTALL README
 
-%_menudir/*
 %_bindir/*
 
 %_datadir/applications/kde/kile.desktop
@@ -206,3 +174,43 @@ rm -rf $RPM_BUILD_ROOT
 %_iconsdir/hicolor/scalable/apps/kile.svgz
 
 
+
+#--------------------------------------------------------------------
+%prep
+%setup -q
+%patch1 -p1 -b .fix_unblacklist_gcc
+
+%build
+make -f admin/Makefile.common
+QTDIR=%{qtdir}
+export QTDIR
+%configure2_5x	--disable-rpath \
+		--disable-debug \
+		--enable-final
+%make
+
+
+%install
+rm -rf $RPM_BUILD_ROOT
+%{makeinstall_std}
+
+# menu
+desktop-file-install --vendor="" \
+  --remove-category="Application" \
+  --add-category="Graphics" \
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
+
+rm -rf $RPM_BUILD_ROOT/%_datadir/apps/katepart/syntax/latex.xml
+rm -rf $RPM_BUILD_ROOT/%_datadir/apps/katepart/syntax/bibtex.xml
+
+rm -rf $RPM_BUILD_ROOT/%_datadir/INSTALL
+rm -rf $RPM_BUILD_ROOT/%_datadir/README
+rm -rf $RPM_BUILD_ROOT/%_datadir/AUTHORS
+rm -rf $RPM_BUILD_ROOT/%_datadir/NEWS
+rm -rf $RPM_BUILD_ROOT/%_datadir/TODO
+rm -rf $RPM_BUILD_ROOT/%_datadir/COPYING
+
+%find_lang %name
+
+%clean
+rm -rf $RPM_BUILD_ROOT
