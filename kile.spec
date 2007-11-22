@@ -16,7 +16,6 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	tetex-latex
 BuildRequires:	kdelibs-devel
 BuildRequires:  desktop-file-utils
-Patch1:			kile-1.8-fix-blacklisted-gcc.patch
 Obsoletes:      kile-i18n-de
 Obsoletes:      kile-i18n-es 
 Obsoletes:      kile-i18n-fr 
@@ -44,7 +43,7 @@ Integrated LaTeX Environment for KDE3
 
 %files -f %name.lang
 %defattr(-,root,root,0755)
-%doc INSTALL README
+%doc README ChangeLog TODO AUTHORS
 %_bindir/*
 %_datadir/applications/kde/kile.desktop
 %_datadir/mimelnk/text/*
@@ -57,7 +56,6 @@ Integrated LaTeX Environment for KDE3
 #--------------------------------------------------------------------
 %prep
 %setup -q
-#%patch1 -p1 -b .fix_unblacklist_gcc
 
 %build
 make -f admin/Makefile.common
@@ -77,16 +75,6 @@ desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="Publishing" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications/kde $RPM_BUILD_ROOT%{_datadir}/applications/kde/*
-
-rm -rf $RPM_BUILD_ROOT/%_datadir/apps/katepart/syntax/latex.xml
-rm -rf $RPM_BUILD_ROOT/%_datadir/apps/katepart/syntax/bibtex.xml
-
-rm -rf $RPM_BUILD_ROOT/%_datadir/INSTALL
-rm -rf $RPM_BUILD_ROOT/%_datadir/README
-rm -rf $RPM_BUILD_ROOT/%_datadir/AUTHORS
-rm -rf $RPM_BUILD_ROOT/%_datadir/NEWS
-rm -rf $RPM_BUILD_ROOT/%_datadir/TODO
-rm -rf $RPM_BUILD_ROOT/%_datadir/COPYING
 
 %find_lang %name --with-html
 
