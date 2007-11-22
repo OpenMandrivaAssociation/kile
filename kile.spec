@@ -47,6 +47,7 @@ Integrated LaTeX Environment for KDE3
 %_bindir/*
 %_datadir/applications/kde/kile.desktop
 %_datadir/mimelnk/text/*
+%_datadir/apps/katepart/syntax/*.xml
 %_datadir/apps/kile
 %_datadir/apps/kconf_update/*.upd
 %_datadir/apps/kconf_update/*.pl
