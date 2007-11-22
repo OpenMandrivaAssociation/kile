@@ -1,15 +1,15 @@
 %define	name	kile
-%define	version	1.9.3
-%define	release	%mkrel 3
+%define	version	2.0
+%define	release	%mkrel 1
 %define	Summary	Integrated LaTeX Environment for KDE3
 
 Name:		%{name}
 Summary:	%{Summary}
 Version: 	%{version}
 Release:	%{release}
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	http://jaist.dl.sourceforge.net/sourceforge/kile/%{name}-%{version}.tar.bz2
 Epoch:		1
-License:	GPL
+License:	GPLv2+
 Group:		Publishing
 Url:		http://kile.sourceforge.net/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -17,7 +17,6 @@ Requires:	tetex-latex
 BuildRequires:	kdelibs-devel
 BuildRequires:  desktop-file-utils
 Patch1:			kile-1.8-fix-blacklisted-gcc.patch
-Patch2:		kile-1.8.1-i18n-de.patch
 Obsoletes:      kile-i18n-de
 Obsoletes:      kile-i18n-es 
 Obsoletes:      kile-i18n-fr 
@@ -29,22 +28,9 @@ Obsoletes:      kile-i18n-da
 Obsoletes:      kile-i18n-pt_BR
 Obsoletes:      kile-i18n-sv
 Obsoletes:      kile-i18n-ta
-Provides:	kile-i18n-de >= 1.8.0
-Provides:	kile-i18n-es >= 1.8.0
-Provides:	kile-i18n-fr >= 1.8.0
-Provides:	kile-i18n-it >= 1.8.0
-Provides:	kile-i18n-nl >= 1.8.0
-Provides:	kile-i18n-pt >= 1.8.0
-Provides:	kile-i18n-en_GB >= 1.8.0
-Provides:	kile-i18n-da >= 1.8.0
-Provides:	kile-i18n-pt_BR	>= 1.8.0
-Provides:	kile-i18n-sv >= 1.8.0
-Provides:	kile-i18n-ta >= 1.8.0
-
 
 %description
 Integrated LaTeX Environment for KDE3
-
 
 %post
 %{update_menus}
@@ -62,21 +48,16 @@ Integrated LaTeX Environment for KDE3
 %_bindir/*
 %_datadir/applications/kde/kile.desktop
 %_datadir/mimelnk/text/*
-%_datadir/apps/kile/
-
+%_datadir/apps/kile
 %_datadir/apps/kconf_update/*.upd
 %_datadir/apps/kconf_update/*.pl
-
 %_datadir/config.kcfg/kile.kcfg
-
 %_iconsdir/hicolor/*/apps/*
-
-
 
 #--------------------------------------------------------------------
 %prep
 %setup -q
-%patch1 -p1 -b .fix_unblacklist_gcc
+#%patch1 -p1 -b .fix_unblacklist_gcc
 
 %build
 make -f admin/Makefile.common
