@@ -29,7 +29,7 @@ Obsoletes:      kile-i18n-sv
 Obsoletes:      kile-i18n-ta
 
 %description
-Integrated LaTeX Environment for KDE3
+Kile is an integrated LaTeX Environment for KDE3.
 
 %post
 %{update_menus}
