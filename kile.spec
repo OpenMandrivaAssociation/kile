@@ -12,6 +12,7 @@ Epoch:		1
 License:	GPLv2+
 Group:		Publishing
 Url:		http://kile.sourceforge.net/
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	tetex-latex
 BuildRequires:	kdelibs-devel
 BuildRequires:  desktop-file-utils
