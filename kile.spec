@@ -1,6 +1,6 @@
 %define	name	kile
 %define	version	2.0
-%define	release	%mkrel 2
+%define	release	%mkrel 3
 %define	Summary	Integrated LaTeX Environment for KDE3
 
 Name:		%{name}
@@ -59,14 +59,13 @@ Kile is an integrated LaTeX Environment for KDE3.
 
 %build
 make -f admin/Makefile.common
-%configure2_5x	--disable-rpath \
+%configure	--disable-rpath \
 		--disable-debug \
 		--enable-final
 %make
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
 %{makeinstall_std}
 
 # menu
@@ -74,12 +73,9 @@ desktop-file-install --vendor="" \
   --remove-key='Encoding' \
   --remove-category="Application" \
   --add-category="Publishing" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications/kde $RPM_BUILD_ROOT%{_datadir}/applications/kde/*
+  --dir %{buildroot}%{_datadir}/applications/kde %{buildroot}%{_datadir}/applications/kde/*
 
 # fix conflicts with our kdelibs
-rm -fr %buildroot%{_datadir}/apps/katepart/syntax
+rm -fr %{buildroot}%{_datadir}/apps/katepart/syntax
 
 %find_lang %name --with-html
-
-%clean
-rm -rf $RPM_BUILD_ROOT
