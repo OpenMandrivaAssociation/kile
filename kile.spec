@@ -1,6 +1,6 @@
 %define	name	kile
-%define	version	2.0
-%define	release	%mkrel 3
+%define	version	2.0.1
+%define	release	%mkrel 1
 %define	Summary	Integrated LaTeX Environment for KDE3
 
 Name:		%{name}
