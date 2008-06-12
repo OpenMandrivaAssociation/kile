@@ -31,15 +31,19 @@ Obsoletes:      kile-i18n-ta
 %description
 Kile is an integrated LaTeX Environment for KDE3.
 
+%if %mdkversion < 200900
 %post
 %{update_menus}
 %update_icon_cache hicolor
 %{update_desktop_database}
+%endif
 
+%if %mdkversion < 200900
 %postun
 %{clean_menus}
 %clean_icon_cache hicolor
 %{clean_desktop_database}
+%endif
 
 %files -f %name.lang
 %defattr(-,root,root,0755)
