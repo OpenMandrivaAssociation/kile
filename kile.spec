@@ -1,6 +1,6 @@
 %define	name	kile
 %define	version	2.0.1
-%define	release	%mkrel 2
+%define	release	%mkrel 3
 %define	Summary	Integrated LaTeX Environment for KDE3
 
 Name:		%{name}
@@ -48,14 +48,14 @@ Kile is an integrated LaTeX Environment for KDE3.
 %files -f %name.lang
 %defattr(-,root,root,0755)
 %doc README ChangeLog TODO AUTHORS
-%_bindir/*
-%_datadir/applications/kde/kile.desktop
-%_datadir/mimelnk/text/*
-%_datadir/apps/kile
-%_datadir/apps/kconf_update/*.upd
-%_datadir/apps/kconf_update/*.pl
-%_datadir/config.kcfg/kile.kcfg
-%_iconsdir/hicolor/*/apps/*
+%_kde3_bindir/*
+%_kde3_datadir/applications/kde/kile.desktop
+%_kde3_datadir/mimelnk/text/*
+%_kde3_datadir/apps/kile
+%_kde3_datadir/apps/kconf_update/*.upd
+%_kde3_datadir/apps/kconf_update/*.pl
+%_kde3_datadir/config.kcfg/kile.kcfg
+%_kde3_iconsdir/hicolor/*/apps/*
 
 #--------------------------------------------------------------------
 %prep
@@ -63,13 +63,12 @@ Kile is an integrated LaTeX Environment for KDE3.
 
 %build
 make -f admin/Makefile.common
-%configure	--disable-rpath \
-		--disable-debug \
-		--enable-final
+%configure_kde3
 %make
 
 
 %install
+rm -fr %buildroot
 %{makeinstall_std}
 
 # menu
@@ -77,9 +76,9 @@ desktop-file-install --vendor="" \
   --remove-key='Encoding' \
   --remove-category="Application" \
   --add-category="Publishing" \
-  --dir %{buildroot}%{_datadir}/applications/kde %{buildroot}%{_datadir}/applications/kde/*
+  --dir %{buildroot}%{_kde3_datadir}/applications/kde %{buildroot}%{_kde3_datadir}/applications/kde/*
 
 # fix conflicts with our kdelibs
-rm -fr %{buildroot}%{_datadir}/apps/katepart/syntax
+rm -fr %{buildroot}%{_kde3_datadir}/apps/katepart/syntax
 
 %find_lang %name --with-html
