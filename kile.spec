@@ -1,6 +1,6 @@
 %define	name	kile
-%define	version	2.0.1
-%define	release	%mkrel 3
+%define	version	2.0.2
+%define	release	%mkrel 1
 %define	Summary	Integrated LaTeX Environment for KDE3
 
 Name:		%{name}
@@ -65,7 +65,6 @@ Kile is an integrated LaTeX Environment for KDE3.
 make -f admin/Makefile.common
 %configure_kde3
 %make
-
 
 %install
 rm -fr %buildroot
