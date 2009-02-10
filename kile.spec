@@ -1,20 +1,23 @@
+# http://apps.sourceforge.net/mediawiki/kile/index.php?title=KileForKDE4
+
 %define	name	kile
-%define	version	2.0.3
-%define	release	%mkrel 1
-%define	Summary	Integrated LaTeX Environment for KDE3
+%define	version	2.1
+%define	release	%mkrel 0.%svn.1
+%define	Summary	Integrated LaTeX Environment for KDE4
+%define svn  924057
 
 Name:		%{name}
 Summary:	%{Summary}
 Version: 	%{version}
 Release:	%{release}
-Source0:	http://jaist.dl.sourceforge.net/sourceforge/kile/%{name}-%{version}.tar.bz2
+Source0:	http://jaist.dl.sourceforge.net/sourceforge/kile/%{name}-%{version}.%svn.tar.bz2
 Epoch:		1
 License:	GPLv2+
 Group:		Publishing
 Url:		http://kile.sourceforge.net/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	tetex-latex
-BuildRequires:	kdelibs-devel
+BuildRequires:	kdelibs4-devel
 BuildRequires:  desktop-file-utils
 Obsoletes:      kile-i18n-de
 Obsoletes:      kile-i18n-es 
@@ -29,55 +32,36 @@ Obsoletes:      kile-i18n-sv
 Obsoletes:      kile-i18n-ta
 
 %description
-Kile is an integrated LaTeX Environment for KDE3.
+Kile is an integrated LaTeX Environment for KDE4.
 
-%if %mdkversion < 200900
-%post
-%{update_menus}
-%update_icon_cache hicolor
-%{update_desktop_database}
-%endif
-
-%if %mdkversion < 200900
-%postun
-%{clean_menus}
-%clean_icon_cache hicolor
-%{clean_desktop_database}
-%endif
-
-%files -f %name.lang
+%files
 %defattr(-,root,root,0755)
-%doc README ChangeLog TODO AUTHORS
-%_kde3_bindir/*
-%_kde3_datadir/applications/kde/kile.desktop
-%_kde3_datadir/mimelnk/text/*
-%_kde3_datadir/apps/kile
-%_kde3_datadir/apps/kconf_update/*.upd
-%_kde3_datadir/apps/kconf_update/*.pl
-%_kde3_datadir/config.kcfg/kile.kcfg
-%_kde3_iconsdir/hicolor/*/apps/*
+%doc AUTHORS ChangeLog README* TODO kile-remote-control.txt
+%{_kde_bindir}/kile
+%{_kde_datadir}/applications/kde4/kile.desktop
+%{_kde_appsdir}/kconf_update/kile*
+%{_kde_datadir}/config.kcfg/kile.kcfg
+%{_kde_datadir}/dbus-1/interfaces/net.sourceforge.kile.main.xml
+%{_kde_datadir}/mimelink/text/x-kilepr.desktop
+%{_kde_appsdir}/kile
+%{_kde_iconsdir}/*/*/*/*
 
 #--------------------------------------------------------------------
+
 %prep
-%setup -q
+%setup -q -n %name
 
 %build
-make -f admin/Makefile.common
-%configure_kde3
+%cmake_kde4
 %make
 
 %install
 rm -fr %buildroot
-%{makeinstall_std}
+%{makeinstall_std} -C build
 
 # menu
 desktop-file-install --vendor="" \
   --remove-key='Encoding' \
   --remove-category="Application" \
   --add-category="Publishing" \
-  --dir %{buildroot}%{_kde3_datadir}/applications/kde %{buildroot}%{_kde3_datadir}/applications/kde/*
-
-# fix conflicts with our kdelibs
-rm -fr %{buildroot}%{_kde3_datadir}/apps/katepart/syntax
-
-%find_lang %name --with-html
+  --dir %{buildroot}%{_kde_datadir}/applications/kde4 %{buildroot}%{_kde_datadir}/applications/kde4/*
