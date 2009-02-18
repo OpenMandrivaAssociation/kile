@@ -2,7 +2,7 @@
 
 %define	name	kile
 %define	version	2.1
-%define	release	%mkrel 0.%svn.1
+%define	release	%mkrel 0.%svn.2
 %define	Summary	Integrated LaTeX Environment for KDE4
 %define svn  924057
 
@@ -17,6 +17,7 @@ Group:		Publishing
 Url:		http://kile.sourceforge.net/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	tetex-latex
+Requires:   kappfinder
 BuildRequires:	kdelibs4-devel
 BuildRequires:  desktop-file-utils
 Obsoletes:      kile-i18n-de
@@ -45,7 +46,7 @@ Kile is an integrated LaTeX Environment for KDE4.
 %{_kde_datadir}/mimelink/text/x-kilepr.desktop
 %{_kde_appsdir}/kile
 %{_kde_iconsdir}/*/*/*/*
-
+%exclude %{_kde_iconsdir}/hicolor/64x64/actions/preview.png
 #--------------------------------------------------------------------
 
 %prep
