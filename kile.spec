@@ -2,7 +2,7 @@
 
 %define	name	kile
 %define	version	2.1
-%define	release	%mkrel 0.%svn.2
+%define	release	%mkrel 0.%svn.3
 %define	Summary	Integrated LaTeX Environment for KDE4
 %define svn  924057
 
@@ -47,6 +47,7 @@ Kile is an integrated LaTeX Environment for KDE4.
 %{_kde_appsdir}/kile
 %{_kde_iconsdir}/*/*/*/*
 %exclude %{_kde_iconsdir}/hicolor/64x64/actions/preview.png
+%exclude %{_kde_iconsdir}/hicolor/22x22/actions/output_win.pn
 #--------------------------------------------------------------------
 
 %prep
