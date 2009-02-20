@@ -47,7 +47,8 @@ Kile is an integrated LaTeX Environment for KDE4.
 %{_kde_appsdir}/kile
 %{_kde_iconsdir}/*/*/*/*
 %exclude %{_kde_iconsdir}/hicolor/64x64/actions/preview.png
-%exclude %{_kde_iconsdir}/hicolor/22x22/actions/output_win.pn
+%exclude %{_kde_iconsdir}/hicolor/22x22/actions/output_win.png
+
 #--------------------------------------------------------------------
 
 %prep
