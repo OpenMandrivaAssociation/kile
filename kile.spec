@@ -2,16 +2,16 @@
 
 %define	name	kile
 %define	version	2.1
-%define	release	%mkrel 0.%svn.3
+%define	release	%mkrel 0.%svn.1
 %define	Summary	Integrated LaTeX Environment for KDE4
-%define svn  924057
+%define svn     b2
 
 Name:		%{name}
 Summary:	%{Summary}
 Version: 	%{version}
 Release:	%{release}
-Source0:	http://jaist.dl.sourceforge.net/sourceforge/kile/%{name}-%{version}.%svn.tar.bz2
-Epoch:		1
+Source0:	http://jaist.dl.sourceforge.net/sourceforge/kile/%{name}-%{version}%svn.tar.bz2
+Epoch:		2
 License:	GPLv2+
 Group:		Publishing
 Url:		http://kile.sourceforge.net/
@@ -46,13 +46,11 @@ Kile is an integrated LaTeX Environment for KDE4.
 %{_kde_datadir}/mimelink/text/x-kilepr.desktop
 %{_kde_appsdir}/kile
 %{_kde_iconsdir}/*/*/*/*
-%exclude %{_kde_iconsdir}/hicolor/64x64/actions/preview.png
-%exclude %{_kde_iconsdir}/hicolor/22x22/actions/output_win.png
 
 #--------------------------------------------------------------------
 
 %prep
-%setup -q -n %name
+%setup -q -n %{name}-%{version}%svn
 
 %build
 %cmake_kde4
