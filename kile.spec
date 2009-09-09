@@ -37,7 +37,7 @@ Kile is an integrated LaTeX Environment for KDE4.
 
 %files
 %defattr(-,root,root,0755)
-%doc AUTHORS ChangeLog README* TODO kile-remote-control.txt
+%doc AUTHORS ChangeLog README* kile-remote-control.txt
 %{_kde_bindir}/kile
 %{_kde_datadir}/applications/kde4/kile.desktop
 %{_kde_appsdir}/kconf_update/kile*
