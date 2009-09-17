@@ -1,36 +1,28 @@
-# http://apps.sourceforge.net/mediawiki/kile/index.php?title=KileForKDE4
+%define svn b2
 
-%define	name	kile
-%define	version	2.1
-%define	release	%mkrel 0.%svn.1
-%define	Summary	Integrated LaTeX Environment for KDE4
-%define svn     b2
-
-Name:		%{name}
-Summary:	%{Summary}
-Version: 	%{version}
-Release:	%{release}
-Source0:	http://jaist.dl.sourceforge.net/sourceforge/kile/%{name}-%{version}%svn.tar.bz2
-Epoch:		2
-License:	GPLv2+
-Group:		Publishing
-Url:		http://kile.sourceforge.net/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Requires:	tetex-latex
-Requires:   kappfinder
-BuildRequires:	kdelibs4-devel
-BuildRequires:  desktop-file-utils
-Obsoletes:      kile-i18n-de
-Obsoletes:      kile-i18n-es 
-Obsoletes:      kile-i18n-fr 
-Obsoletes:      kile-i18n-it 
-Obsoletes:      kile-i18n-nl 
-Obsoletes:      kile-i18n-pt
-Obsoletes:      kile-i18n-en_GB
-Obsoletes:      kile-i18n-da
-Obsoletes:      kile-i18n-pt_BR
-Obsoletes:      kile-i18n-sv
-Obsoletes:      kile-i18n-ta
+Name: kile
+Summary: Integrated LaTeX Environment for KDE4
+Version: 2.1
+Release: %mkrel 0.%svn.2
+Epoch: 2
+Url: http://kile.sourceforge.net/
+Source0: http://jaist.dl.sourceforge.net/sourceforge/kile/%{name}-%{version}%svn.tar.bz2
+License: GPLv2+
+Group: Publishing
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Requires: tetex-latex
+BuildRequires: kdelibs4-devel
+Obsoletes: kile-i18n-de
+Obsoletes: kile-i18n-es 
+Obsoletes: kile-i18n-fr 
+Obsoletes: kile-i18n-it 
+Obsoletes: kile-i18n-nl 
+Obsoletes: kile-i18n-pt
+Obsoletes: kile-i18n-en_GB
+Obsoletes: kile-i18n-da
+Obsoletes: kile-i18n-pt_BR
+Obsoletes: kile-i18n-sv
+Obsoletes: kile-i18n-ta
 
 %description
 Kile is an integrated LaTeX Environment for KDE4.
@@ -60,9 +52,3 @@ Kile is an integrated LaTeX Environment for KDE4.
 rm -fr %buildroot
 %{makeinstall_std} -C build
 
-# menu
-desktop-file-install --vendor="" \
-  --remove-key='Encoding' \
-  --remove-category="Application" \
-  --add-category="Publishing" \
-  --dir %{buildroot}%{_kde_datadir}/applications/kde4 %{buildroot}%{_kde_datadir}/applications/kde4/*
