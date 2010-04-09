@@ -1,9 +1,9 @@
-%define svn b3
+%define svn b4
 
 Name: kile
 Summary: Integrated LaTeX Environment for KDE4
 Version: 2.1
-Release: %mkrel 0.%svn.2
+Release: %mkrel 0.%svn.1
 Epoch: 2
 Url: http://kile.sourceforge.net/
 Source0: http://jaist.dl.sourceforge.net/sourceforge/kile/%{name}-%{version}%svn.tar.bz2
