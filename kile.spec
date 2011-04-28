@@ -1,9 +1,9 @@
-%define svn b4
+%define svn b5
 
 Name: kile
 Summary: Integrated LaTeX Environment for KDE4
 Version: 2.1
-Release: %mkrel 0.%svn.2
+Release: %mkrel 0.%svn.1
 Epoch: 2
 Url: http://kile.sourceforge.net/
 Source0: http://jaist.dl.sourceforge.net/sourceforge/kile/%{name}-%{version}%svn.tar.bz2
@@ -36,7 +36,8 @@ Kile is an integrated LaTeX Environment for KDE4.
 %{_kde_appsdir}/kconf_update/kile*
 %{_kde_datadir}/config.kcfg/kile.kcfg
 %{_kde_datadir}/dbus-1/interfaces/net.sourceforge.kile.main.xml
-%{_kde_datadir}/mimelink/text/x-kilepr.desktop
+%{_kde_datadir}/mime/packages/kile.xml
+#{_kde_datadir}/mimelink/text/x-kilepr.desktop
 %{_kde_appsdir}/kile
 %{_kde_iconsdir}/*/*/*/*
 
