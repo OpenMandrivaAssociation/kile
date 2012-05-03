@@ -1,14 +1,13 @@
 Name: kile
 Summary: Integrated LaTeX Environment for KDE4
-Version: 2.1
-Release: %mkrel 1
+Version: 2.1.2
+Release: 1
 Epoch: 2
 Url: http://kile.sourceforge.net/
 Source0: http://jaist.dl.sourceforge.net/sourceforge/kile/%{name}-%{version}.tar.bz2
 License: GPLv2+
 Group: Publishing
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Requires: tetex-latex
+Requires: texlive-latex
 Requires: konsole
 BuildRequires: kdelibs4-devel
 Obsoletes: kile-i18n-de
@@ -48,7 +47,8 @@ Kile is an integrated LaTeX Environment for KDE4.
 %make
 
 %install
-rm -fr %buildroot
 %{makeinstall_std} -C build
+chmod 0755 %{buildroot}%{_kde_appsdir}/kconf_update/kile*.pl %{buildroot}%{_kde_appsdir}/kile/test/runTests.sh
+chmod 0644 %{buildroot}%{_kde_datadir}/applications/kde4/kile.desktop
 
 %find_lang %name --with-html
