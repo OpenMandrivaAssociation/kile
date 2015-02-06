@@ -1,7 +1,7 @@
 Name: kile
 Summary: Integrated LaTeX Environment for KDE4
 Version: 2.1.3
-Release: 3
+Release: 4
 Epoch: 2
 Url: http://kile.sourceforge.net/
 Source0: http://jaist.dl.sourceforge.net/sourceforge/kile/%{name}-%{version}.tar.bz2
