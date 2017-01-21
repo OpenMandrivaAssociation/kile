@@ -1,7 +1,7 @@
 Name: kile
 Summary: Integrated LaTeX Environment for KDE4
 Version: 2.1.3
-Release: 4
+Release: 5
 Epoch: 2
 Url: http://kile.sourceforge.net/
 Source0: http://jaist.dl.sourceforge.net/sourceforge/kile/%{name}-%{version}.tar.bz2
@@ -10,7 +10,7 @@ Group: Publishing
 Requires: texlive
 Requires: texlive-scheme-full
 Requires: konsole
-Requires: katepart
+Requires: katepart4
 BuildRequires: kdelibs4-devel
 Obsoletes: kile-i18n-de
 Obsoletes: kile-i18n-es 
