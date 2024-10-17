@@ -3,7 +3,7 @@ Summary: Integrated LaTeX Environment for KF5
 Version: 2.9.92
 Release: 1
 Epoch: 2
-Url: http://kile.sourceforge.net/
+Url: https://kile.sourceforge.net/
 Source0: http://jaist.dl.sourceforge.net/sourceforge/kile/%{name}-%{version}.tar.bz2
 License: GPLv2+
 Group: Publishing
