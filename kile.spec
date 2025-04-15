@@ -1,6 +1,6 @@
 Name: kile
 Summary: Integrated LaTeX Environment for KF5
-Version: 2.9.92
+Version: 2.9.94
 Release: 1
 Epoch: 2
 Url: https://kile.sourceforge.net/
@@ -9,34 +9,41 @@ License: GPLv2+
 Group: Publishing
 Requires: texlive
 Requires: texlive-scheme-full
-Requires: konsole
+Requires: (konsole or plasma6-konsole)
 BuildRequires:	cmake(ECM)
-BuildRequires:	cmake(Qt5DBus)
-BuildRequires:	cmake(Qt5Gui)
-BuildRequires:	cmake(Qt5Widgets)
-BuildRequires:	cmake(Qt5Script)
-BuildRequires:	cmake(Qt5Test)
-BuildRequires:	cmake(KF5Config)
-BuildRequires:	cmake(KF5CoreAddons)
-BuildRequires:	cmake(KF5Crash)
-BuildRequires:	cmake(KF5DBusAddons)
-BuildRequires:	cmake(KF5DocTools)
-BuildRequires:	cmake(KF5GuiAddons)
+BuildRequires:	cmake(Qt6)
+BuildRequires:	cmake(Qt6Core)
+BuildRequires:	cmake(Qt6CoreTools)
+BuildRequires:	cmake(Qt6DBus)
+BuildRequires:	cmake(Qt6DBusTools)
+BuildRequires:	cmake(Qt6Gui)
+BuildRequires:	cmake(Qt6GuiTools)
+BuildRequires:	cmake(Qt6Widgets)
+BuildRequires:	cmake(Qt6WidgetsTools)
+BuildRequires:	cmake(Qt6Test)
+BuildRequires:	cmake(Qt6Core5Compat)
+BuildRequires:	cmake(Qt6QmlTools)
+BuildRequires:	cmake(Poppler)
+BuildRequires:	cmake(KF6Config)
+BuildRequires:	cmake(KF6CoreAddons)
+BuildRequires:	cmake(KF6Codecs)
+BuildRequires:	cmake(KF6Crash)
+BuildRequires:	cmake(KF6DBusAddons)
+BuildRequires:	cmake(KF6DocTools)
+BuildRequires:	cmake(KF6GuiAddons)
 BuildRequires:	cmake(Gettext)
 BuildRequires:	cmake(PythonInterp)
-BuildRequires:	cmake(KF5I18n)
-BuildRequires:	cmake(KF5IconThemes)
-BuildRequires:	cmake(KF5Init)
-BuildRequires:	cmake(KF5KHtml)
-BuildRequires:	cmake(KF5KIO)
-BuildRequires:	cmake(KF5Parts)
-BuildRequires:	cmake(KF5TextEditor)
-BuildRequires:	cmake(KF5WindowSystem)
-BuildRequires:	cmake(KF5XmlGui)
-BuildRequires:	cmake(KF5)
-BuildRequires:	cmake(Okular5)
-BuildRequires:	cmake(Qt5Core)
-BuildRequires:	cmake(Qt5)
+BuildRequires:	cmake(KF6I18n)
+BuildRequires:	cmake(KF6IconThemes)
+BuildRequires:	cmake(KF6KIO)
+BuildRequires:	cmake(KF6Parts)
+BuildRequires:	cmake(KF6TextEditor)
+BuildRequires:	cmake(KF6TextWidgets)
+BuildRequires:	cmake(KF6WindowSystem)
+BuildRequires:	cmake(KF6XmlGui)
+BuildRequires:	cmake(KF6)
+BuildRequires:	cmake(Okular6)
+BuildSystem:	cmake
 Obsoletes: kile-i18n-de
 Obsoletes: kile-i18n-es 
 Obsoletes: kile-i18n-fr 
@@ -55,27 +62,13 @@ Kile is an integrated LaTeX Environment for KF5.
 %files -f %name.lang
 %defattr(-,root,root,0755)
 %doc AUTHORS ChangeLog README* kile-remote-control.txt
-%{_kde5_bindir}/kile
-%{_kde5_datadir}/applications/org.kde.kile.desktop
-%{_kde5_datadir}/kconf_update/kile*
-%{_kde5_datadir}/config.kcfg/kile.kcfg
-%{_kde5_datadir}/dbus-1/interfaces/net.sourceforge.kile.main.xml
-%{_kde5_datadir}/mime/packages/kile.xml
-%{_kde5_datadir}/kile
-%{_kde5_iconsdir}/*/*/*/*
-%{_kde5_libdir}/*.so
-%{_sysconfdir}/xdg/kile.categories
+%{_bindir}/kile
+%{_datadir}/applications/org.kde.kile.desktop
+%{_datadir}/kconf_update/kile*
+%{_datadir}/config.kcfg/kile.kcfg
+%{_datadir}/mime/packages/kile.xml
+%{_datadir}/kile
+%{_datadir}/icons/*/*/*/*
 %{_datadir}/metainfo/org.kde.kile.appdata.xml
-
-#--------------------------------------------------------------------
-
-%prep
-%setup -q -n %{name}-%{version}
-%cmake_kde5
-%build
-%ninja_build -C build
-
-%install
-%{ninja_install} -C build
-
-%find_lang %name --with-html
+%{_datadir}/dbus-1/interfaces/org.kde.kile.main.xml
+%{_datadir}/qlogging-categories6/kile.categories
